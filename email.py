@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def send_email():
     # You can use the following email
     # to send your emails.
@@ -31,3 +32,6 @@ def send_email():
         print('Email sent!')
     except:
         print('Something went wrong...')
+=======
+
+>>>>>>> 9d9dcbf58fcdde3af8c435edadb141ee5d9d624f
