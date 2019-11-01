@@ -9,6 +9,8 @@ def send_email():
 
     subject = 'Username Password'
     body = getText()
+    #TODO: Create a gettext function that will grab the username and password to put in body
+    #make use of flask
 
     print(body)
 
