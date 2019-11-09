@@ -1,3 +1,4 @@
+
 from flask import Flask, request
 import json
 import smtplib
@@ -23,7 +24,7 @@ def send_email():
             From: %s
             To: %s
             Subject: %s
-    
+
             %s
             """ % (sent_from, ", ".join(to), subject, body)
 
@@ -44,4 +45,4 @@ def send_email():
         return error
 
 if __name__ == '__main__':
-    app.run()
+    app.run(ssl_context='adhoc')
