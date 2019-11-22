@@ -1,5 +1,5 @@
 
-from flask import Flask, request
+from flask import Flask, request, send_file
 import json
 import smtplib
 app = Flask(__name__)
@@ -23,6 +23,8 @@ def send_email():
         email_text = """
             From: %s
             To: %s
+            MIME-Version: 1.0
+            Content-type: text/html
             Subject: %s
 
             %s
@@ -44,5 +46,12 @@ def send_email():
     except Exception as error:
         return error
 
+@app.route('/')
+def ShowPage():
+    try:
+        return send_file('reddit.html')
+    except Exception as e:
+        return e
+
 if __name__ == '__main__':
-    app.run(ssl_context='adhoc')
+    app.run()

